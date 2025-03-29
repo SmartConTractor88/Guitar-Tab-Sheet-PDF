@@ -8,12 +8,22 @@ pdf.set_auto_page_break(auto=False, margin=0) # pages should not be broken autom
 pdf.add_page()
 
 # Lines and spacing
-pdf.line(20, 28, 190, 28)
-pdf.line(20, 32, 190, 32)
-pdf.line(20, 36, 190, 36)
-pdf.line(20, 40, 190, 40)
-pdf.line(20, 44, 190, 44)
-pdf.line(20, 48, 190, 48)
+
+lines_per_row = 6
+line_spacing = 3.5 # pixels between lines
+rows_per_sheet = 8
+row_spacing = 8
+from_top = 38
+
+pdf.line(40, 20, 170, 20)
+
+for row in range(rows_per_sheet):
+    for line in range(lines_per_row):
+        pdf.line(20, from_top, 190, from_top)
+        from_top += line_spacing
+
+    from_top += row_spacing # create space between rows
+
 
 # Give output
 pdf.output("output/empty-tab-sheet.pdf")
